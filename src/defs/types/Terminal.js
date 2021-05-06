@@ -40,7 +40,7 @@ const optionTypes = {
   noHistory: PropTypes.bool,
   noAutoScroll: PropTypes.bool,
   noNewlineParsing: PropTypes.bool,
-  inputComponent: PropTypes.node
+  onKeyDown: PropTypes.func
 }
 
 const labelTypes = {

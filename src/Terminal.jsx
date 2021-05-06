@@ -204,6 +204,9 @@ export default class Terminal extends Component {
       case 'ArrowUp': this.scrollHistory('up'); break
       case 'ArrowDown': this.scrollHistory('down'); break
     }
+    if (this.props.onKeyDown) {
+      this.props.onKeyDown(event)
+    }
   }
 
   componentDidUpdate (prevProps) {
@@ -258,30 +261,16 @@ export default class Terminal extends Component {
               {this.props.promptLabel || '$'}
             </span>
             {/* Input */}
-            {this.props.inputComponent && (
-              this.props.inputComponent(<input
-                ref={this.terminalInput}
-                name='react-console-emulator__input'
-                className={this.props.inputClassName}
-                style={styles.input}
-                onKeyDown={this.handleInput}
-                type='text'
-                autoComplete='off'
-                disabled={this.props.disabled || (this.props.disableOnProcess && /* istanbul ignore next: Covered by interactivity tests */ this.state.processing)}
-              />)
-            )}
-            {!this.props.inputComponent && (
-              <input
-                ref={this.terminalInput}
-                name='react-console-emulator__input'
-                className={this.props.inputClassName}
-                style={styles.input}
-                onKeyDown={this.handleInput}
-                type='text'
-                autoComplete='off'
-                disabled={this.props.disabled || (this.props.disableOnProcess && /* istanbul ignore next: Covered by interactivity tests */ this.state.processing)}
-              />
-            )}
+            <input
+              ref={this.terminalInput}
+              name='react-console-emulator__input'
+              className={this.props.inputClassName}
+              style={styles.input}
+              onKeyDown={this.handleInput}
+              type='text'
+              autoComplete='off'
+              disabled={this.props.disabled || (this.props.disableOnProcess && /* istanbul ignore next: Covered by interactivity tests */ this.state.processing)}
+            />
           </div>
         </div>
       </div>
