@@ -258,16 +258,30 @@ export default class Terminal extends Component {
               {this.props.promptLabel || '$'}
             </span>
             {/* Input */}
-            <input
-              ref={this.terminalInput}
-              name='react-console-emulator__input'
-              className={this.props.inputClassName}
-              style={styles.input}
-              onKeyDown={this.handleInput}
-              type='text'
-              autoComplete='off'
-              disabled={this.props.disabled || (this.props.disableOnProcess && /* istanbul ignore next: Covered by interactivity tests */ this.state.processing)}
-            />
+            {this.props.inputComponent && (
+              this.props.inputComponent(<input
+                ref={this.terminalInput}
+                name='react-console-emulator__input'
+                className={this.props.inputClassName}
+                style={styles.input}
+                onKeyDown={this.handleInput}
+                type='text'
+                autoComplete='off'
+                disabled={this.props.disabled || (this.props.disableOnProcess && /* istanbul ignore next: Covered by interactivity tests */ this.state.processing)}
+              />)
+            )}
+            {!this.props.inputComponent && (
+              <input
+                ref={this.terminalInput}
+                name='react-console-emulator__input'
+                className={this.props.inputClassName}
+                style={styles.input}
+                onKeyDown={this.handleInput}
+                type='text'
+                autoComplete='off'
+                disabled={this.props.disabled || (this.props.disableOnProcess && /* istanbul ignore next: Covered by interactivity tests */ this.state.processing)}
+              />
+            )}
           </div>
         </div>
       </div>
