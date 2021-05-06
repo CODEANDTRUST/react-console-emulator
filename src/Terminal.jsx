@@ -199,13 +199,13 @@ export default class Terminal extends Component {
 
   /* istanbul ignore next: Covered by interactivity tests */
   handleInput = event => {
+    if (this.props.onKeyDown) {
+      this.props.onKeyDown(event)
+    }
     switch (event.key) {
       case 'Enter': this.processCommand(); break
       case 'ArrowUp': this.scrollHistory('up'); break
       case 'ArrowDown': this.scrollHistory('down'); break
-    }
-    if (this.props.onKeyDown) {
-      this.props.onKeyDown(event)
     }
   }
 
