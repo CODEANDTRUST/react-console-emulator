@@ -46,7 +46,7 @@ const optionTypes = {
 const labelTypes = {
   welcomeMessage: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.arrayOf(PropTypes.node),
     PropTypes.string
   ]),
   promptLabel: PropTypes.node,
